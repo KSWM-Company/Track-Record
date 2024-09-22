@@ -1,0 +1,208 @@
+*,
+*::after,
+*::before{
+    padding: 0;
+    margin: 0;
+}
+:root{
+    --blue-color: #0c2f54;
+    --dark-color: #5c6153;
+    --white-color: #fff;
+    --yellow-color: #f0e116d0;
+}
+
+ul{
+    list-style-type: none;
+}
+ul li{
+    margin: 2px 0;
+}
+
+/* text colors */
+.text-dark{
+    color: var(--dark-color);
+}
+.text-blue{
+    color: var(--blue-color);
+}
+.text-end-c{
+    text-align: right;
+    height: 12px;
+}
+.text-bold {
+    margin-right: 200;
+}
+.text-center{
+    margin-left: 130px;
+    font-family: 'Khmer OS Muol Light' !important;
+}
+.text-start{
+    text-align: left;
+}
+.text-bold{
+    font-weight: 700;
+}
+/*  */
+/* hr line */
+.hr{
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+/* border-bottom */
+.border-bottom{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-color);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+}
+.invoice-wrapper{
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.invoice{
+    max-width: 850px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: var(--white-color);
+    padding: 70px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    min-height: 920px;
+
+}
+.invoice-head-top-left img{
+    width: 120px;
+}
+.invoice-head-top-right img{
+    width: 140px;
+    float: right;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: -80px;
+}
+.invoice-head-top-right h3{
+    font-weight: 500;
+    font-size: 10px;
+    color: var(--blue-color);
+    font-family: 'Khmer OS Muol Light' !important;
+    border-spacing: 20px;
+    text-align: center;
+    float: right;
+    padding: 10px;
+}
+.invoice-head-bottom-right h4,h5 {
+    background-color: var(--yellow-color) !important;
+    display: inline-block;
+    padding: 10px;
+    font-family: 'Khmer OS Battambang' !important;
+    font-size: 12px;
+}
+
+.invoice-head-middle, .invoice-head-bottom{
+    padding: 12px 0;
+}
+.invoice-body{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    font-size: 12px;
+}
+.invoice-body-info-item {
+    background-color: var(--yellow-color);
+    padding: 2px;
+    font-size: 12px;
+}
+.invoice-body table{
+    border-collapse: collapse;
+    border-radius: 4px;
+    width: 100%;
+}
+.invoice-body table td, .invoice-body table th {
+    padding: 12px;
+    font-family: 'Khmer OS Battambang' !important;
+}
+.invoice-body table tr{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.invoice-body table thead{
+    background-color: rgba(0, 0, 0, 0.02);
+}
+.invoice-foot{
+    padding: 0 30px;
+    font-family: 'Khmer OS Muol Light' !important;
+    margin-left: 70px;
+    display: inline-block;
+}
+
+.invoice-foot {
+    font-size: 14px;
+}
+.invoice-btns{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.invoice-btn{
+    padding: 3px 9px;
+    color: var(--dark-color);
+    font-family: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.invoice-head-top, .invoice-head-middle, .invoice-head-bottom{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 992px){
+    .invoice{
+        padding: 40px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .invoice-head-top, .invoice-head-middle, .invoice-head-bottom{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .invoice-head-bottom-right{
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+    .invoice *{
+        text-align: left;
+    }
+    .invoice{
+        padding: 28px;
+    }
+}
+
+.overflow-view{
+    overflow-x: scroll;
+}
+.invoice-body{
+    min-width: 600px;
+}
+@media print{
+    .print-area{
+        visibility: visible;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+    }
+    .overflow-view{
+        overflow-x: hidden;
+    }
+    .invoice-btns{
+        display: none;
+    }
+
+}

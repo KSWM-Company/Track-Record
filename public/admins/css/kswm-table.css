@@ -1,0 +1,108 @@
+.table-responsive{
+    margin-bottom: 10px;
+}
+.kswn-table{
+    width:100%;
+}
+.kswn-table th{
+    padding:5px;
+    border:1px solid #ccc !important;
+    background:#f9f9f9;
+}
+
+.kswn-table th:last-child{
+    width: 10px !important;
+    border-right:1px solid #ccc !important;
+}
+.kswn-table td{
+    padding:5px 5px 5px 5px;
+}
+
+.th_business_type{
+    width:160px;
+    text-align: center !important;
+}
+.th_category{
+    width: 160px;
+    text-align: center !important;
+}
+.th_sub_category{
+    width:160px;
+    text-align: center !important;
+}
+.th_muitiply{
+    width: 100px;
+    text-align: center !important;
+}
+.th_total_fee{
+    width:100px;
+    text-align: center !important;
+}
+.th_action{
+    width:300px;
+    text-align: center !important;
+}
+.th_amount{
+    width: 180px;
+    text-align: center !important;
+}
+.td_move{
+    cursor: move;
+}
+.td_item{
+    width:160px;
+    text-align: left !important;
+}
+.td_desc{
+    width: 300px;
+    text-align: left !important;
+}
+.td_qty{
+    width:120px;
+    text-align: right !important;
+}
+.td_price{
+    width: 150px;
+    text-align: right !important;
+}
+.td_discount{
+    width:100px;
+    text-align: right !important;
+}
+.td_account{
+    width:300px;
+    text-align: left !important;
+}
+.td_amount{
+    width: 180px;
+    text-align: right !important;
+}
+.fa-bars:hover{
+    cursor: move;
+}
+#sortable td{
+    border:1px solid #ccc !important;
+}
+.input-text{
+    font-size: 1rem;
+    line-height: 1.28;
+    margin-left: -0.3px;
+    margin-right: -0.3px;
+    display: block;
+    width: 100%;
+    height: 42.5px;
+    padding: .75rem 1rem;
+    -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    -moz-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -o-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+    color: #4e5154;
+    border: 1px solid #fff;
+    background-color: #fff;
+    background-clip: padding-box;
+}
+#btnNewRecord{
+    margin-left: 15px;
+}

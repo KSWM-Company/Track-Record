@@ -1,0 +1,31 @@
+php artisan db:seed --class=BranchSeeder
+php artisan db:seed --class=BusinessTypeSeeder
+php artisan db:seed --class=CategorySeeder
+php artisan db:seed --class=SubCategorySeeder
+php artisan db:seed --class=LocationCodeSeeder
+
+php artisan db:seed
+
+php artisan migrate:refresh --path=database/migrations/2014_10_12_000000_create_users_table.php
+php artisan migrate:refresh --path=database/migrations/2014_10_12_100000_create_password_resets_table.php
+php artisan migrate:refresh --path=database/migrations/2024_01_11_170821_create_business_types_table.php
+php artisan migrate:refresh --path=database/migrations/2024_01_12_162101_create_categories_table.php
+php artisan migrate:refresh --path=database/migrations/2024_01_14_125944_create_sub_categories_table.php
+php artisan migrate:refresh --path=database/migrations/2024_01_27_091324_create_branches_table.php
+php artisan migrate:refresh --path=database/migrations/2024_01_30_155928_create_location_codes_table.php
+php artisan migrate:refresh --path=database/migrations/2024_02_22_150304_create_surveys_table.php
+php artisan migrate:refresh --path=database/migrations/2024_02_22_161313_create_staff_list_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_02_074822_create_survey_details_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_10_062903_create_payment_types_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_10_063523_create_currencies_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_10_070431_create_customers_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_17_143653_create_survey_business_types_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_18_142732_create_survey_files_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_18_151520_create_customer_of_business_types_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_18_152216_create_customer_files_table.php
+php artisan migrate:refresh --path=database/migrations/2024_03_29_140737_create_companies_table.php
+php artisan migrate:refresh --path=database/migrations/2024_04_17_071024_create_permission_tables.php
+php artisan migrate:refresh --path=database/migrations/2024_04_18_164035_create_permission__categories_table.php
+php artisan migrate:refresh --path=database/migrations/2024_04_07_143305_create_agreements_table.php
+php artisan migrate:refresh --path=database/migrations/2024_08_29_150503_create_pre_surveys_table.php
+php artisan migrate:refresh --path=database/migrations/2024_08_29_150739_create_pre_survey_files_table.php
