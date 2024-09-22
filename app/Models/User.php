@@ -70,9 +70,7 @@ class User extends Authenticatable implements AuditableContract
         ->logOnlyDirty()
         ->dontSubmitEmptyLogs();
     }
-    public function branches(){
-        return $this->belongsToMany(Branch::class, 'user_branches','user_id','branch_id');
-    }
+  
     public function role(){
         return $this->belongsTo(Role::class,'role_id');
     }
@@ -82,21 +80,11 @@ class User extends Authenticatable implements AuditableContract
             return Carbon::parse($this->date_of_birth)->format('d-M-Y');
         }
     }
-    public function getBranchNameKhAttribute(){
-        return Helper::getLang() == 'en' ? optional($this->branch)->name_en : optional($this->branch)->name_kh;
-    }
+
     public function getRoleNameAttribute(){
         return optional($this->role)->name;
     }
     public function getRolePermissionAttribute(){
         return optional($this->role)->role_type;
-    }
-    public function getRestrictBranchAttribute(){
-        $RestrictBranchName = '';
-        foreach ($this->branches as $key=>$item) {
-            $RestrictBranchName .= $item->name_en. ',';
-           
-        }
-        return rtrim($RestrictBranchName, ", ");
     }
 }

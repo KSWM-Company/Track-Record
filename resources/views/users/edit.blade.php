@@ -40,26 +40,6 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label class="form-label" for="single-default">@lang('lang.restrict_branch') <span class="text-danger">*</span></label>
-                                <select class="select2 form-control w-100 select2-hidden-accessible" name="branches[]" id="branches" data-select2-id="single-default" tabindex="-1" aria-hidden="true" multiple>
-                                    @foreach ($branch as $itemBranch)
-                                        <option value="{{ $itemBranch->id}}" {{ in_array($itemBranch->id, $user->branches->pluck('id')->toArray()) ? "selected" : "" }}>{{ Helper::getLang() == 'en' ? $itemBranch->name_en : $itemBranch->name_ar }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">@lang('lang.access_branch') <span class="text-danger">*</span></label>
-                                <select class="select2 form-control w-100 select2-hidden-accessible" name="branch_default" id="branch_default">
-                                    @foreach(Auth::user()->branches as $item)
-                                        <option value="{{ $item->id }}" {{ session('branch_id') == $item->id ? 'selected' : '' }}>
-                                            {{ Helper::getLang() == 'en' ? $item->name_en : $item->name_en }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-6">
                                 <label class="form-label">@lang('lang.email') <span class="text-danger">*</span></label>
                                 <div class="custom-file">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" required autocomplete="email">

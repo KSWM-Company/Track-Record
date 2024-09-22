@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         /** For migrate on Digital Ocean*/
-        DB::statement('SET SESSION sql_require_primary_key=0');
+        // DB::statement('SET SESSION sql_require_primary_key=0');
 
         $teams = config('permission.teams');
         $tableNames = config('permission.table_names');

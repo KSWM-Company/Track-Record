@@ -202,20 +202,10 @@
         <div class="page-wrapper">
             <div class="page-inner">
                 <!-- BEGIN Left Aside page-sidebar-->
-                @php
-                    $data = App\Models\Company::first();
-                @endphp
                 <aside class="page-sidebar">
                     <div class="page-logo bg-success-600">
                         <a href="#" class="page-logo-link position-absolute text-white opacity-200 press-scale-down d-flex align-items-center position-relative " data-toggle="modal" data-target="#modal-shortcut">
-                            @if ($data->company_logo == null)
-                                <img src="{{ asset('images/fetch_photo/001-avatar.png') }}" class=" imagestaff_preview shadow-3 img-thumbnail " alt="article photo" style="width: 150px;height:150px;border-radius: 50%;border: 1px solid #08ff67;">
-                            @else
-                                <img src="{{$data->company_logo}}" alt="Wastie Collection" aria-roledescription="logo">
-                            @endif
-                            <span class="page-logo-text bg-success-600 mr-1">
-                                {{ Helper::getLang() == 'en' ? $data->name_en : $data->name_kh }}
-                            </span>
+                            <img src="{{asset('admins/img/logo.png')}}" alt="Wastie Collection" aria-roledescription="logo">
                             <span class="position-absolute small pos-top pos-right mr-2 mt-n2"></span>
                         </a>
                     </div>
@@ -261,30 +251,6 @@
                                 <a class="dropdown-item" href="{{ url('lang/kh') }}"><img src="{{asset('/admins/img/lang/flag-of-cambodia-logo.png')}}" alt="" height="15">&nbsp;{{Helper::getLang() == 'en' ? 'Khmer' : 'ខ្មែរ'}}</a>
                             </div>
                         </div>
-                        <form action="{{ url('admins/switch/branch') }}" method="POST">
-                            @csrf
-                            <select name="branch_id" onchange="this.form.submit()" class="form-control">
-                                @foreach(Auth::user()->branches as $branch)
-                                    <option value="{{ $branch->id }}" {{ session('branch_id') == $branch->id ? 'selected' : '' }}>
-                                        {{ Helper::getLang() == 'en' ? $branch->name_en : $branch->name_en }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </form>
-
-                        {{-- <div class="btn-group mr-1">
-                            <a class="btn btn-outline-success bg-success-600 dropdown-toggle waves-effect waves-themed" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @foreach(Auth::user()->branches as $item)
-                                    <span>Branch</span>
-                                @endforeach
-                            </a>
-                            <div class="dropdown-menu" x-placement="bottom-start">
-                                @foreach(Auth::user()->branches as $item)
-                                    <a onclick="switchBranch({{$item->id}})" class="dropdown-item">{{Helper::getLang() == 'en' ? $item->name_en : $item->name_kh}}</a>
-                                    <div class="dropdown-divider m-0"></div>
-                                @endforeach
-                            </div>
-                        </div> --}}
 
                         <!-- DOC: mobile button appears during mobile width -->
                         <div class="hidden-lg-up">
@@ -308,10 +274,6 @@
 
                             <!-- app notification -->
                             <div>
-                                {{--  <a href="#" class="header-icon" data-toggle="dropdown" title="You got 11 notifications">
-                                    <i class="fal fa-bell"></i>
-                                    <span class="badge badge-icon">11</span>
-                                </a>  --}}
                                 <div class="dropdown-menu dropdown-menu-animated dropdown-xl">
                                     <ul class="nav nav-tabs nav-tabs-clean" role="tablist">
                                         <div class="tab-pane" id="tab-messages" role="tabpanel">
@@ -338,25 +300,15 @@
                             </div>
                             <!-- app user menu -->
                             <div>
-                                @if (Auth::user()->profile == null)
-                                    <a href="#" data-toggle="dropdown" class="bg-success-600 header-icon d-flex align-items-center justify-content-center ml-2">
-                                        <img src="{{ asset('admins/img/demo/avatars/avatar-admin.jpg') }}" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
-                                    </a>
-                                @else
-                                    <a href="#" data-toggle="dropdown" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                                        <img src="{{ Auth::user()->profile }}" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
-                                    </a>
-                                @endif
+                                <a href="#" data-toggle="dropdown" class="bg-success-600 header-icon d-flex align-items-center justify-content-center ml-2">
+                                    <img src="{{ asset('admins/img/demo/avatars/avatar-admin.jpg') }}" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                                </a>
                             </div>
                                 <div class="">
                                    <a class=" text-light dropdown-toggle waves-effect waves-themed d-flex flex-row py-4 rounded-top align-items-center " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><h6>{{ Auth::user()->name}}</h6></a>
-                                {{--  <h5><span class="header-icon d-flex align-items-center bg-success-600 justify-content-center ml-2">{{ Auth::user()->name }}</span></h5>  --}}
                                 <div class="dropdown-menu dropdown-xl">
                                     <div class="dropdown-header bg-success-600 d-flex flex-row py-4 rounded-top">
                                         <div class="d-flex align-items-center ">
-                                            {{--  <span class="mr-2">
-                                                <img src="{{asset('admins/img/demo/avatars/avatar-admin.png')}}" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
-                                            </span>  --}}
                                             <div class="info-card-text">
                                                 <div class="fs-lg text-truncate text-truncate-lg">{{ Auth::user()->name }}</div>
                                                 <span class="text-truncate text-truncate-md opacity-80">{{ Auth::user()->email }}</span>
@@ -371,7 +323,6 @@
                                     <a href="#" class="dropdown-item" data-toggle="modal" data-target=".js-modal-settings">
                                         <span data-i18n="drpdwn.settings">@lang('lang.setting')</span>
                                     </a>
-                                    {{--  @dd(Auth::user())  --}}
                                     <a href="{{ url('admins/profile/' . Auth::user()->id) }}" class="dropdown-item" title="profile" data-filter-tags="profile">
                                         <span data-i18n="drpdwn.profile">@lang('lang.profile')</span>
                                     </a>
@@ -393,7 +344,7 @@
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
                         <ol class="breadcrumb page-breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">{{ Helper::getLang() == 'en' ? $data->name_en : $data->name_kh }}</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">sf</a></li>
                             <li class="breadcrumb-item">{{ Auth::user()->name }}</li>
                             <li class="breadcrumb-item active"> {{ ucwords(str_replace('-', ' ', strtolower(request()->segment(2) ?? ''))) }}{{ request()->segment(3) ? ' / ' . ucwords(str_replace('-', ' ', strtolower(request()->segment(3)))) : '' }}</li>
                             <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>

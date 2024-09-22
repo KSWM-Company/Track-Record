@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Branch;
 use App\Traits\Generate;
-use App\Models\UserBranch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\UserRequest;
@@ -32,14 +30,10 @@ class UserController extends Controller
     public function index()
     {
         // Define the base query
-        $query = User::with('branches')
-        ->leftJoin('roles','users.role_id','=','roles.id')
-        ->leftJoin('branches','users.branch_default','=','branches.id')
+        $query = User::leftJoin('roles','users.role_id','=','roles.id')
         ->select(
             'users.*',
             'roles.name as role_name',
-            'branches.name_kh as branch_name_default_kh',
-            'branches.name_en as branch_name_default_en',
         );
         // Apply additional filtering for 'Staff' role
         // Auth::user()->hasRole('Staff')
@@ -58,10 +52,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $branch = Branch::select('id','name_kh','name_en')->get();
         $UserID = $this->GenerateUserID();
         $role = Role::all();
-        return view('users.create',compact('branch','UserID','role'));
+        return view('users.create',compact('UserID','role'));
     }
 
     /**
@@ -125,10 +118,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         try{
-            $branch = Branch::select('id','name_kh','name_en')->get();
-            $user = User::with('branches')->where('id',$user->id)->first();
+            $user = User::where('id',$user->id)->first();
             $role = Role::all();
-            return view('users.edit',compact('user','branch','role'));
+            return view('users.edit',compact('user','role'));
         }catch(\Exception $e){
             return response()->json(['error'=>$e->getMessage()]);
         }
@@ -186,16 +178,6 @@ class UserController extends Controller
                     Toastr::error('Updated Users fail','Error');
                 }
             }
-            if ($user) {
-                UserBranch::where('user_id', $request->id)->delete();
-                foreach ($request->branches as $value) {
-                    UserBranch::create([
-                        'user_id'  => $request->id,
-                        'branch_id'  => $value,
-                        'updated_by'  => Auth::user()->id,
-                    ]);
-                }
-            }
             DB::commit();
             Toastr::success('Updated Users successfully.','Success');
             return redirect('admins/users');
@@ -215,37 +197,37 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        try{
-            $user->delete();
-            return response()->json(['mg'=>'success'], 200);
-        }catch(\Exception $e){
-            return response()->json(['error'=>$e->getMessage()]);
-        }
+        // try{
+        //     $user->delete();
+        //     return response()->json(['mg'=>'success'], 200);
+        // }catch(\Exception $e){
+        //     return response()->json(['error'=>$e->getMessage()]);
+        // }
     }
-    public function profile(Request $request){
-        $data = User::with('branches')
-        ->leftJoin('roles','users.role_id','=','roles.id')
-        ->leftJoin('branches','users.branch_default','=','branches.id')
-        ->select(
-            'users.*',
-            'roles.name as role_name',
-            'branches.name_kh as branch_name_default_kh',
-            'branches.name_en as branch_name_default_en',
-        )->where('users.id',$request->id)->first();
-        // dd($data);
-        return view('users.profile',compact('data'));
-    }
-    public function onchangeRole(Request $request){
-        try{
-            User::where('role_id',$request->role_id)->update([
-                'role_id' => $request->role_id
-            ]);
-            DB::commit();
-            return ['message' => 'successfull'];
-        }catch(\Exception $e){
-            DB::rollback();
-            Toastr::error('Change user role fail','Error');
-            return redirect()->back();
-        }
-    }
+    // public function profile(Request $request){
+    //     $data = User::with('branches')
+    //     ->leftJoin('roles','users.role_id','=','roles.id')
+    //     ->leftJoin('branches','users.branch_default','=','branches.id')
+    //     ->select(
+    //         'users.*',
+    //         'roles.name as role_name',
+    //         'branches.name_kh as branch_name_default_kh',
+    //         'branches.name_en as branch_name_default_en',
+    //     )->where('users.id',$request->id)->first();
+    //     // dd($data);
+    //     return view('users.profile',compact('data'));
+    // }
+    // public function onchangeRole(Request $request){
+    //     try{
+    //         User::where('role_id',$request->role_id)->update([
+    //             'role_id' => $request->role_id
+    //         ]);
+    //         DB::commit();
+    //         return ['message' => 'successfull'];
+    //     }catch(\Exception $e){
+    //         DB::rollback();
+    //         Toastr::error('Change user role fail','Error');
+    //         return redirect()->back();
+    //     }
+    // }
 }

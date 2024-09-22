@@ -36,24 +36,6 @@
                             </div>
                         </div>
 
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <label class="form-label" for="single-default">@lang('lang.restrict_branch') <span class="text-danger">*</span></label>
-                                <select class="select2 form-control w-100 select2-hidden-accessible" name="branches[]" id="branches" data-select2-id="single-default" tabindex="-1" aria-hidden="true" multiple>
-                                    @foreach ($branch as $item)
-                                        <option value="{{$item->id}}">{{Helper::getLang() == 'en' ? $item->name_en : $item->name_en}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">@lang('lang.access_branch') <span class="text-danger">*</span></label>
-                                <select class="select2 form-control w-100 select2-hidden-accessible" name="branch_default" id="branch_default">
-                                    @foreach ($branch as $item)
-                                        <option value="{{$item->id}}">{{Helper::getLang() == 'en' ? $item->name_en : $item->name_en}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
 
                         <div class="row mb-2">
                             <div class="col-md-6">

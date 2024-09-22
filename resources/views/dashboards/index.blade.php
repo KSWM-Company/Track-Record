@@ -7,25 +7,16 @@
                 <h1 class="subheader-title">
                     <i class='subheader-icon fal fa-chart-area'></i> WASTIE <span class='fw-300'>Dashboard</span>
                 </h1>
-                @php
-                    $totalFee = 0;
-                    $totalFeeInUSD = 0;
-                    foreach ($preSurvey as $value) {
-                        $totalFee += $value->total_fee;  // Added missing semicolon
-                        $totalFeeInUSD = $totalFee;
-                    }
-                @endphp
-
                 <div class="d-flex mr-4">
                     <div>
                         <label class="fw-300 fs-xs d-block opacity-50">Total Fee</label>
-                        <h4 class="fw-500 fs-xl d-block color-primary-500">{{Helper::convertDollarToRiel($totalFee)}}</h4>
+                        <h4 class="fw-500 fs-xl d-block color-primary-500">3</h4>
                     </div>
                 </div>
                 <div class="d-flex mr-0">
                     <div>
                         <label class="fw-300 fs-xs d-block opacity-50">Total Fee</label>
-                        <h4 class="fw-500 fs-xl d-block color-primary-500">{{Helper::convertRielToDollar($totalFeeInUSD)}}</h4>
+                        <h4 class="fw-500 fs-xl d-block color-primary-500">3</h4>
                     </div>
                 </div>
             </div>
@@ -34,7 +25,7 @@
                     <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
                         <div class="">
                             <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                {{ number_format(count($preSurvey)) }}
+                                3
                                 <small class="m-0 l-h-n">Total Pre Survey</small>
                             </h3>
                         </div>
@@ -45,7 +36,7 @@
                     <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                         <div class="">
                             <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                {{ number_format(count($survey)) }}
+                                3
                                 <small class="m-0 l-h-n">Total Survey</small>
                             </h3>
                         </div>
@@ -287,88 +278,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 sortable-grid ui-sortable">
-            <div id="panel-4" class="panel panel-sortable" role="widget">
-                <div class="panel-hdr" role="heading">
-                    <h2 class="ui-sortable-handle">
-                        Users <span class="fw-300"><i>Records</i></span>
-                    </h2>
-                </div>
-                <div class="panel-container show" role="content">
-                    <div class="loader"><i class="fal fa-spinner-third fa-spin-4x fs-xxl"></i></div>
-                    <div class="panel-content">
-                        <div id="dt-basic-example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table id="dt-basic-example"
-                                        class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline"
-                                        role="grid" aria-describedby="dt-basic-example_info" style="width: 1162px;">
-                                        <thead class="bg-warning-200">
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="dt-basic-example" rowspan="1" colspan="1" style="width: 70.2px;" aria-sort="ascending" aria-label="UserID: activate to sort column descending">@lang('lang.profile')</th>
-                                                <th class="sorting_asc" tabindex="0" aria-controls="dt-basic-example" rowspan="1" colspan="1" style="width: 70.2px;" aria-sort="ascending" aria-label="UserID: activate to sort column descending">@lang('lang.user_id')</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dt-basic-example" rowspan="1" colspan="1" style="width: 59.2px;" aria-label="Name: activate to sort column ascending">@lang('lang.name')</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dt-basic-example" rowspan="1" colspan="1" style="width: 59.2px;" aria-label="Name: activate to sort column ascending">@lang('lang.total_pre_survey')</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dt-basic-example" rowspan="1" colspan="1" style="width: 83.2px;" aria-label="PurchaseDate: activate to sort column ascending">@lang('lang.restrict_branch')</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dt-basic-example" rowspan="1" colspan="1" style="width: 294.2px;" aria-label="CustomerEmail: activate to sort column ascending">@lang('lang.access_branch')</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dt-basic-example" rowspan="1" colspan="1" style="width: 84.2px;" aria-label="CustomerCVV: activate to sort column ascending">@lang('lang.role')</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($users as $key=>$item)
-                                                @php
-                                                    $userPreCount = $preSurvey->filter(function ($userPre) use ($item) {
-                                                        return $item->id == $userPre->user_id;
-                                                    })->count();
-                                                @endphp
-                                                <tr>
-                                                    <td>
-                                                        @if ($item->profile==null)
-                                                            <img src="{{asset('admins/img/demo/avatars/avatar-admin.png')}}" class="profile-image rounded-circle" style="object-fit: cover;" alt="profile">
-                                                        @else
-                                                            <img src="{{$item->profile}}" class="profile-image rounded-circle" style="object-fit: cover;" alt="profile">
-                                                        @endif
-                                                    </td>
-                                                    <td>{{$item->cs_id}}</td>
-                                                    <td>{{$item->name}}</td>
-                                                    <td>
-                                                        {{ number_format($userPreCount) }}
-                                                    </td>
-                                                    <td>
-                                                        @if ($item->branches)
-                                                            <ul>
-                                                                @foreach ($item->branches as $value)
-                                                                    <span class="badge badge-primary badge-pill">
-                                                                        <li>{{ Helper::getLang() == 'en' ? $value->name_en : $value->name_kh }}</li>
-                                                                    </span>
-                                                                @endforeach
-                                                            </ul>
-                                                        @else
-                                                            -
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:void(0);">
-                                                            <span class="btn btn-xs btn-info waves-effect waves-themed">{{ Helper::getLang() == 'en' ? $item->branch_name_default_en : $item->branch_name_default_kh}}</span>
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:void(0);">
-                                                            <span class="btn btn-xs btn-success waves-effect waves-themed">{{$item->role_name}}</span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- datatable end -->
                     </div>
                 </div>
             </div>

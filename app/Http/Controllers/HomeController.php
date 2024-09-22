@@ -29,28 +29,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $branchId = Session::get('branch_id');
-        $users = User::with('branches')
-        ->leftJoin('roles','users.role_id','=','roles.id')
-        ->leftJoin('branches','users.branch_default','=','branches.id')
-        ->select(
-            'users.*',
-            'roles.name as role_name',
-            'branches.name_kh as branch_name_default_kh',
-            'branches.name_en as branch_name_default_en',
-        )->orderBy('users.id', 'DESC')->get();
-
-        $preSurvey = PreSurvey::leftJoin('sub_categories','pre_surveys.sub_category_id','=','sub_categories.id')
-        ->select(
-            'pre_surveys.id',
-            'pre_surveys.branch_id',
-            'pre_surveys.user_id',
-            'pre_surveys.business_type_id',
-            'pre_surveys.sub_category_id',
-            'sub_categories.total_fee',
-        )->where('pre_surveys.branch_id',$branchId)->get();
-        // dd($preSurvey);
-        $survey = Survey::where('branch_id',$branchId)->get();
-        return view('dashboards.index',compact('users','preSurvey','survey'));
+        return view('dashboards.index');
     }
 }
