@@ -65,8 +65,8 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        DB::beginTransaction();
-        try{
+        // DB::beginTransaction();
+        // try{
             if($request->hasFile('profile')) {
                 $image = $request->file('profile');
                 $filename = $image->getClientOriginalName();
@@ -79,7 +79,6 @@ class UserController extends Controller
             $user = User::create([
                 'cs_id'  => $this->GenerateUserID(),
                 'role_id'  => $request->role_id,
-                'branch_default'  => $request->branch_default,
                 'profile'  => $full_path,
                 'name'  => $request->name,
                 'email'  => $request->email,
@@ -88,25 +87,16 @@ class UserController extends Controller
                 'date_of_birth'  => Carbon::createFromDate($request->date_of_birth)->format('Y-m-d'),
                 'created_by'  => Auth::user()->id,
             ]);
-            if ($user) {
-                foreach ($request->branches as $value) {
-                    UserBranch::create([
-                        'user_id'  => $user->id,
-                        'branch_id'  => $value,
-                        'created_by'  => Auth::user()->id,
-                    ]);
-                }
-            }
             $roleName = Role::find($request->role_id)->name;
             $user->assignRole($roleName);
             DB::commit();
             Toastr::success('Create Users successfully.','Success');
             return redirect('admins/users');
-        }catch(\Exception $e){
-            DB::rollback();
-            Toastr::error('Create Users fail','Error');
-            return redirect()->back();
-        }
+        // }catch(\Exception $e){
+        //     DB::rollback();
+        //     Toastr::error('Create Users fail','Error');
+        //     return redirect()->back();
+        // }
     }
 
     /**
@@ -161,7 +151,6 @@ class UserController extends Controller
             $data['profile']    = $full_path;
             $data['cs_id']    = $request->cs_id;
             $data['role_id']    = $request->role_id;
-            $data['branch_default']  = $request->branch_default;
             $data['name']   = $request->name;
             $data['email']  = $request->email;
             $data['password']   = $request->password == null ? $request->old_password : Hash::make($request->password);

@@ -37,7 +37,6 @@ class User extends Authenticatable implements AuditableContract
         'cs_id',
         'name',
         'email',
-        'branch_default',
         'role_id',
         'sex',
         'date_of_birth',

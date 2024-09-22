@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('cs_id');
             $table->integer('role_id');
-            $table->integer('branch_default');
             $table->string('email')->nullable();
             $table->string('password');
             $table->string('sex')->nullable();

@@ -67,10 +67,6 @@
                                             <label class="form-label" for="single-default">@lang('lang.restrict_branch') <span class="text-danger">*</span></label>
                                             <input type="text" id="branches" name="branches[]" class="form-control" value="{{ $data->RestrictBranch}}" disabled>
                                         </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="form-label">@lang('lang.access_branch') <span class="text-danger">*</span></label>
-                                            <input type="text" id="branch_default" name="branch_default" class="form-control" value="{{ Helper::getLang() == 'en' ? $data->branch_name_default_en : $data->branch_name_default_kh}}" disabled>
-                                        </div>
                                         <div class="col-md-12">
                                             <div class="mb-2" style="text-align: right;">
                                                 <a href="{{url('admins/users')}}" class="btn btn-outline-secondary btn-pills waves-effect waves-themed">@lang('lang.cancel')</a>

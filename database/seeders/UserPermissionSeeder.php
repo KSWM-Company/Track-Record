@@ -63,7 +63,6 @@ class UserPermissionSeeder extends Seeder
             'cs_id' => 'Admin3',
             'role_id' => $RoleManager->id,
             'name' => 'Manager',
-            'branch_default' => 1,
             'sex' => '1',
             'email' => 'admin@admin.com',
             'password' => Hash::make('Admin2023'),

@@ -45,8 +45,6 @@ return [
         'ip_address' => OwenIt\Auditing\Resolvers\IpAddressResolver::class,
         'user_agent' => OwenIt\Auditing\Resolvers\UserAgentResolver::class,
         'url'        => OwenIt\Auditing\Resolvers\UrlResolver::class,
-        'user_id'    => App\AuditResolvers\UserIdResolver::class,
-        'user_type'  => App\AuditResolvers\UserTypeResolver::class,
     ],
 
     /*
@@ -107,6 +105,19 @@ return [
     'allowed_empty_values' => [
         'retrieved'
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Allowed Array Values
+    |--------------------------------------------------------------------------
+    |
+    | Should the array values be audited?
+    |
+    | By default, array values are not allowed. This is to prevent performance
+    | issues when storing large amounts of data. You can override this by
+    | setting allow_array_values to true.
+    */
+    'allowed_array_values' => false,
 
     /*
     |--------------------------------------------------------------------------
