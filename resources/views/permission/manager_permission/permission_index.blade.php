@@ -21,7 +21,7 @@
                     <div class="panel-content">
                         <div class="table-responsive">
                             <!-- datatable start -->
-                            <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                            <table id="dt-basic-example" class="table-bordered table-hover table-striped w-100 dataTable dtr-inline">
                                 <thead class="">
                                     <tr>
                                         <th class="checkbox_delete">

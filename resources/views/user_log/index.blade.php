@@ -14,8 +14,8 @@
                     <div class="table-responsive">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="tblUserLog" class="table table-bordered table-hover table-striped w-100 dtr-inline">
-                                    <thead class="table table-bordered table-hover table-striped w-100">
+                                <table id="tblUserLog" class="table-bordered table-hover table-striped w-100 dtr-inline">
+                                    <thead class="table-bordered table-hover table-striped w-100">
                                         <tr>
                                             <th>#</th>
                                             <th>Log Name</th>

@@ -20,7 +20,7 @@
                     <div id="dt-basic-example_wrapper" class="dataTables_wrapper dt-bootstrap4 ">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100" role="grid" aria-describedby="dt-basic-example_info">
+                                <table id="dt-basic-example" class=" table-bordered table-hover table-striped w-100" role="grid" aria-describedby="dt-basic-example_info">
                                     <thead class="">
                                         <tr>
                                             <th>ID</th>

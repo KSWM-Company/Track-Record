@@ -12,7 +12,7 @@ thead {
 }
 /* Padding and text alignment */
 th, td {
-    padding: 12px;
+    padding: 5px;
     /*text-align: center; /* center-align the body text for uniformity */
     font-size: 12px;
 }
