@@ -17,9 +17,9 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-class User extends Authenticatable implements AuditableContract
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,AuditableTrait;
+    use HasApiTokens, HasFactory, Notifiable;
     use LogsActivity;
     use SoftDeletes;
     use HasRoles;
@@ -69,11 +69,11 @@ class User extends Authenticatable implements AuditableContract
         ->logOnlyDirty()
         ->dontSubmitEmptyLogs();
     }
-  
+
     public function role(){
         return $this->belongsTo(Role::class,'role_id');
     }
-    
+
     public function getUserDOBAttribute(){
         if ($this->date_of_birth) {
             return Carbon::parse($this->date_of_birth)->format('d-M-Y');

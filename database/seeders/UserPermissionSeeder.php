@@ -28,7 +28,7 @@ class UserPermissionSeeder extends Seeder
         $role = Permission_Category::create(['name'=>'Role']);
         $permission = Permission_Category::create(['name'=>'Permission']);
         $permissionCategory = Permission_Category::create(['name'=>'Permission Category']);
-       
+
         // create role
         Permission::create(['name' => 'Role View','permission_category_id'=>$role->id]);
         Permission::create(['name' => 'Role Create','permission_category_id'=>$role->id]);
@@ -50,13 +50,16 @@ class UserPermissionSeeder extends Seeder
         Permission::create(['name' => 'User Create','permission_category_id'=>$user->id]);
         Permission::create(['name' => 'User Edit','permission_category_id'=>$user->id]);
         Permission::create(['name' => 'User Delete','permission_category_id'=>$user->id]);
-      
+
         $RoleManager = Role::create(['name' => 'Manager','role_type'=>'Manager']); //as super-admin
+        $staffRole = Role::create(['name' => 'Staff','role_type'=>'Staff']);
 
         // Lets give all permission to Super-Admin role.x
         $allPermissionNames = Permission::pluck('name')->toArray();
         $RoleManager->givePermissionTo($allPermissionNames);
         // Let's Create User and assign Role to it.
+
+        //**Role Manager* */
         $Manager = User::firstOrCreate([
             'email' => 'admin@gmail.com',
         ], [
@@ -68,5 +71,18 @@ class UserPermissionSeeder extends Seeder
             'password' => Hash::make('Admin2023'),
         ]);
         $Manager->assignRole($RoleManager);
+
+        //**Role Staff* */
+        $User = User::firstOrCreate([
+            'email' => 'admin@gmail.com',
+        ], [
+            'cs_id' => 'Admin1',
+            'role_id' => $staffRole->id,
+            'name' => 'My Chhaieang',
+            'sex' => '1',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('Admin2023'),
+        ]);
+        $User->assignRole($staffRole);
     }
 }

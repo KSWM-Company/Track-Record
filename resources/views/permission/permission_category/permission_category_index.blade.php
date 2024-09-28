@@ -19,7 +19,7 @@
                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
                                 <thead class="">
                                     <tr>
-                                        <th>#</th>
+                                        <th>ID</th>
                                         <th>Category Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -36,7 +36,7 @@
                                                     @endcan
                                                     @can('Permission Category Edit')
                                                         <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary btn-icon btn-inline-block mr-1 btn_updated" data-id="{{$value->id}}" title="Edit"><i class="fal fa-edit"></i></a>
-                                                    @endcan                                                                
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

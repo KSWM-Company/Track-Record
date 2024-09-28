@@ -17,21 +17,19 @@
             <div class="panel-container show">
                 <div class="panel-content">
                     <!-- datatable start -->
-                    <div id="dt-basic-example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div id="dt-basic-example_wrapper" class="dataTables_wrapper dt-bootstrap4 ">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100" role="grid" aria-describedby="dt-basic-example_info" style="width: 1163px;">
+                                <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100" role="grid" aria-describedby="dt-basic-example_info">
                                     <thead class="">
                                         <tr>
-                                            <th>#</th>
+                                            <th>ID</th>
                                             <th>@lang('lang.profile')</th>
                                             <th>@lang('lang.user_id')</th>
                                             <th>@lang('lang.name')</th>
                                             <th>@lang('lang.sex')</th>
                                             <th>@lang('lang.date_of_birth')</th>
                                             <th>@lang('lang.email')</th>
-                                            <th>@lang('lang.restrict_branch')</th>
-                                            <th>@lang('lang.access_branch')</th>
                                             <th>@lang('lang.role')</th>
                                             <th>@lang('lang.action')</th>
                                         </tr>
@@ -39,7 +37,7 @@
                                     <tbody>
                                         @foreach ($data as $key=>$item)
                                             <tr>
-                                                <td>{{$key + 1}}</td>
+                                                <td >{{$key + 1}}</td>
                                                 <td>
                                                     @if ($item->profile==null)
                                                         <img src="{{asset('admins/img/demo/avatars/avatar-admin.png')}}" class="profile-image rounded-circle" style="object-fit: cover;" alt="profile">
@@ -53,24 +51,6 @@
                                                 <td>{{$item->UserDOB}}</td>
                                                 <td>{{$item->email}}</td>
                                                 <td>
-                                                    @if ($item->branches)
-                                                        <ul>
-                                                            @foreach ($item->branches as $value)
-                                                                <span class="badge badge-primary badge-pill">
-                                                                    <li>{{ Helper::getLang() == 'en' ? $value->name_en : $value->name_kh }}</li>
-                                                                </span>
-                                                            @endforeach
-                                                        </ul>
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="javascript:void(0);">
-                                                        <span class="btn btn-xs btn-info waves-effect waves-themed">{{ Helper::getLang() == 'en' ? $item->branch_name_default_en : $item->branch_name_default_kh}}</span>
-                                                    </a>
-                                                </td>
-                                                <td>
                                                     <a href="javascript:void(0);">
                                                         <span class="btn btn-xs btn-success waves-effect waves-themed">{{$item->role_name}}</span>
                                                     </a>
@@ -81,7 +61,7 @@
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger btn-icon btn-inline-block mr-1" onclick="deleteData({{$item->id}})" title="Delete Record"><i class="fal fa-times"></i></a>
                                                         @endcan
                                                         @can('User Edit')
-                                                            <a href="{{url('admins/users',$item->id)}}" class="btn btn-sm btn-outline-primary btn-icon btn-inline-block mr-1" title="Edit"><i class="fal fa-edit"></i></a>
+                                                            <a href="{{url('admins/users',$item->id)}}" class="btn btn-sm btn-outline-success btn-icon btn-inline-block mr-1" title="Edit"><i class="fal fa-edit"></i></a>
                                                         @endcan
                                                     </div>
                                                 </td>
@@ -100,6 +80,8 @@
 </div>
 
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
 
 @endsection
 @section('script')
@@ -148,5 +130,10 @@
             }
         });
     }
+
+
 </script>
 @endsection
+
+
+

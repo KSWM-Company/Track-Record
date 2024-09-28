@@ -37,6 +37,7 @@
         <link rel="stylesheet" media="screen, print" href="{{asset('admins/css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css')}}">
         <link rel="stylesheet" href="{{ asset('admins/css/kswm-table.css') }}">
         <link rel="stylesheet" href="{{ asset('admins/css/invoice.css') }}">
+        <link rel="stylesheet" href="{{ asset('admins/css/databale-cus.css') }}">
         {{-- dropzone --}}
         <link rel="stylesheet" href="{{ asset('admins/css/formplugins/dropzone/dropzone.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
@@ -64,29 +65,29 @@
                 font-size: 0.875rem;
             }
             .pagination .page-link:hover {
-                background-color: #008000 !important;
+                background-color: #179c8e !important;
             }
             .header-function-fixed .btn-switch[data-class="header-function-fixed"]{
-                background-color: #008000 !important;
+                background-color: #179c8e !important;
             }
             .nav-function-fixed .btn-switch[data-class="nav-function-fixed"]{
-                background-color: #008000 !important;
+                background-color: #179c8e !important;
             }
             .header-function-fixed .btn-switch[data-class="header-function-fixed"] + .onoffswitch-title {
-                color: #008000 !important;
+                color: #179c8e !important;
             }
             .nav-function-fixed .btn-switch[data-class="nav-function-fixed"] + .onoffswitch-title{
-                color: #008000 !important;
+                color: #179c8e !important;
             }
             .nav-menu li.active > a{
-                box-shadow: inset 3px 0 0 #008000 !important;
+                box-shadow: inset 3px 0 0 #179c8e !important;
                 background-color: #f1f3f3 !important;
             }
             .header-icon:not(.btn) > [class*='fa-']:first-child {
                 color:#f1f3f3 !important;
             }
             .bg-trans-gradient{
-                background:  #008000 !important;
+                background:  #179c8e !important;
             }
 
             .name{
@@ -125,13 +126,13 @@
                 margin-top: 10px;
                 padding: 10px 20px;
                 border: none;
-                background-color: #01972e;
+                background-color: #179c8e;
                 color: #fff;
                 border-radius: 5px;
                 cursor: pointer;
             }
             #lb_image:hover {
-                background-color: #045f1f;
+                background-color: #179c8e;
             }
             /* Add Style this */
 
@@ -139,76 +140,88 @@
     </head>
     <body class="mod-bg-1 ">
         <!-- DOC: script to save and load page settings -->
-        <script>
-            /**
-             *	This script should be placed right after the body tag for fast execution
-             *	Note: the script is written in pure javascript and does not depend on thirdparty library
-             **/
-            'use strict';
-
-            var classHolder = document.getElementsByTagName("BODY")[0],
+        <body class="mod-bg-1 ">
+            <!-- DOC: script to save and load page settings -->
+            <script>
                 /**
-                 * Load from localstorage
+                 *	This script should be placed right after the body tag for fast execution
+                 *	Note: the script is written in pure javascript and does not depend on thirdparty library
                  **/
-                themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
-                {},
-                themeURL = themeSettings.themeURL || '',
-                themeOptions = themeSettings.themeOptions || '';
-            /**
-             * Load theme options
-             **/
-            if (themeSettings.themeOptions)
-            {
-                classHolder.className = themeSettings.themeOptions;
-                console.log("%c✔ Theme settings loaded", "color: #148f32");
-            }
-            else
-            {
-                console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
-            }
-            if (themeSettings.themeURL && !document.getElementById('mytheme'))
-            {
-                var cssfile = document.createElement('link');
-                cssfile.id = 'mytheme';
-                cssfile.rel = 'stylesheet';
-                cssfile.href = themeURL;
-                document.getElementsByTagName('head')[0].appendChild(cssfile);
-            }
-            /**
-             * Save to localstorage
-             **/
-            var saveSettings = function()
-            {
-                themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+                'use strict';
+
+                var classHolder = document.getElementsByTagName("BODY")[0],
+                    /**
+                     * Load from localstorage
+                     **/
+                    themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+                    {},
+                    themeURL = themeSettings.themeURL || '',
+                    themeOptions = themeSettings.themeOptions || '';
+                /**
+                 * Load theme options
+                 **/
+                if (themeSettings.themeOptions)
                 {
-                    return /^(nav|header|mod|display)-/i.test(item);
-                }).join(' ');
-                if (document.getElementById('mytheme'))
+                    classHolder.className = themeSettings.themeOptions;
+                    console.log("%c✔ Theme settings loaded", "color: #148f32");
+                }
+                else
                 {
-                    themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
-                };
-                localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
-            }
-            /**
-             * Reset settings
-             **/
-            var resetSettings = function()
-            {
-                localStorage.setItem("themeSettings", "");
-            }
-        </script>
+                    console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
+                }
+                if (themeSettings.themeURL && !document.getElementById('mytheme'))
+                {
+                    var cssfile = document.createElement('link');
+                    cssfile.id = 'mytheme';
+                    cssfile.rel = 'stylesheet';
+                    cssfile.href = themeURL;
+                    document.getElementsByTagName('head')[0].appendChild(cssfile);
+                }
+                /**
+                 * Save to localstorage
+                 **/
+                var saveSettings = function()
+                {
+                    themeSettings.themeOptions = String(classHolder.className).split(/[^\w-]+/).filter(function(item)
+                    {
+                        return /^(nav|header|mod|display)-/i.test(item);
+                    }).join(' ');
+                    if (document.getElementById('mytheme'))
+                    {
+                        themeSettings.themeURL = document.getElementById('mytheme').getAttribute("href");
+                    };
+                    localStorage.setItem('themeSettings', JSON.stringify(themeSettings));
+                }
+                /**
+                 * Reset settings
+                 **/
+                var resetSettings = function()
+                {
+                    localStorage.setItem("themeSettings", "");
+                }
+            </script>
 
         <!-- BEGIN Page Wrapper -->
         <div class="page-wrapper">
             <div class="page-inner">
                 <!-- BEGIN Left Aside page-sidebar-->
-                <aside class="page-sidebar">
-                    <div class="page-logo bg-success-600">
-                        <a href="#" class="page-logo-link position-absolute text-white opacity-200 press-scale-down d-flex align-items-center position-relative " data-toggle="modal" data-target="#modal-shortcut">
-                            <img src="{{asset('admins/img/logo.png')}}" alt="Wastie Collection" aria-roledescription="logo">
-                            <span class="position-absolute small pos-top pos-right mr-2 mt-n2"></span>
-                        </a>
-                    </div>
+                @php
+                $data = App\Models\Company::first();
+            @endphp
+            <aside class="page-sidebar">
+                <div class="page-logo bg-success-600">
+                    <a href="#" class="page-logo-link position-absolute text-white opacity-200 press-scale-down d-flex align-items-center position-relative " data-toggle="modal" data-target="#modal-shortcut">
+                        @if ($data->company_logo == null)
+                            <img src="{{ asset('images/fetch_photo/001-avatar.png') }}" class=" imagestaff_preview shadow-3 img-thumbnail " alt="article photo" style="width: 150px;height:150px;border-radius: 50%;border: 1px solid #08ff67;">
+                        @else
+                            <img src="{{$data->company_logo}}" alt="Wastie Collection" aria-roledescription="logo">
+                        @endif
+                        <span class="page-logo-text bg-success-600 mr-1">
+                            {{ Helper::getLang() == 'en' ? $data->name_en : $data->name_kh }}
+                        </span>
+                        <span class="position-absolute small pos-top pos-right mr-2 mt-n2"></span>
+                    </a>
+                </div>
                     <!-- BEGIN PRIMARY NAVIGATION -->
                     @include('layouts.navbar')
                     <!-- END PRIMARY NAVIGATION -->
@@ -216,7 +229,7 @@
                 <!-- END Left Aside -->
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
-                    <header class="page-header bg-success-600" role="banner">
+                    <header class="page-header bg-success-700" role="banner">
                         <!-- we need this logo when user switches to nav-function-top -->
                         <div class="page-logo ">
                             <a href="#" class="page-logo-link  <thead  press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
@@ -300,7 +313,7 @@
                             </div>
                             <!-- app user menu -->
                             <div>
-                                <a href="#" data-toggle="dropdown" class="bg-success-600 header-icon d-flex align-items-center justify-content-center ml-2">
+                                <a href="#" data-toggle="dropdown" class="bg-success-600 header-icon d-flex align-items-center justify-content-center ml-1">
                                     <img src="{{ asset('admins/img/demo/avatars/avatar-admin.jpg') }}" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
                                 </a>
                             </div>

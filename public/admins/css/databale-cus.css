@@ -1,0 +1,46 @@
+  /* Add light border to table cells */
+  table, th, td {
+    border: 0.2px solid #f5f2f2 !important; /* light gray border */
+}
+/* Light gray color for the table header */
+thead {
+    background-color: #f8f9fa; /* lighter gray */
+    color: #2d3135; /* dark gray text */
+    /*text-align: center; /* center-align the header text */
+    letter-spacing: 0.05em; /* add slight letter spacing for elegance */
+    text-transform: uppercase; /* make the header text uppercase */
+}
+/* Padding and text alignment */
+th, td {
+    padding: 12px;
+    /*text-align: center; /* center-align the body text for uniformity */
+    font-size: 12px;
+}
+/* Professional hover effect */
+.table-hover tbody tr:hover {
+    background-color: #eefff5 !important; /* subtle light gray hover color */
+}
+/* Alternating row background for a clean gray-and-white effect */
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* white for odd rows */
+}
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* light gray for even rows */
+}
+/* Highlight rows based on priority with soft colors */
+.bg-high {
+    background-color: #f8d7da; /* soft red for high priority */
+}
+.bg-medium {
+    background-color: #fff3cd; /* soft yellow for medium priority */
+}
+.bg-low {
+    background-color: #d4edda; /* soft green for low priority */
+}
+.bg-urgent {
+    background-color: #d1ecf1; /* soft blue for urgent priority */
+}
+/* More spacing between rows for readability */
+tbody tr {
+    height: 50px; /* increase row height */
+}

@@ -8,6 +8,7 @@ use App\Models\Permission_Category;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\PermissionRequest;
 use Spatie\Permission\Models\Permission;
+use Yajra\DataTables\Facades\DataTables;
 
 class PermissionController extends Controller
 {
@@ -16,12 +17,23 @@ class PermissionController extends Controller
         RolePermission($this, 'Permission');
     }
 
-    public function index(){
+    public function index(Request $request){
         $data = DB::table('permissions')
         ->select('permissions.id','permissions.name','permission__categories.name as cat_name')
         ->leftJoin('permission__categories','permission__categories.id','=','permissions.permission_category_id')
         ->get();
         return view('permission.manager_permission.permission_index',compact('data'));
+        // if ($request->ajax()) {
+        //     $query = DB::table('permissions')
+        //     ->leftJoin('permission__categories','permission__categories.id','=','permissions.permission_category_id')
+        //     ->select(
+        //         'permissions.id',
+        //         'permissions.name',
+        //         'permission__categories.name as cat_name'
+        //     )->get();
+        //     return DataTables::of($query)->make(true);
+        // }
+        // return view('permission.manager_permission.permission_index');
     }
     public function create(){
         $data = Permission_Category::all();
@@ -31,7 +43,7 @@ class PermissionController extends Controller
         try{
             $data_per = Permission_Category::find($request->permission_category_id);
             $name_permission = $data_per->name;
-    
+
             foreach ($request->permission as $value){
                 $check_duplicate = Permission::where('name', $name_permission.' '.$value)->first();
                 if(!empty($check_duplicate)){
@@ -41,7 +53,7 @@ class PermissionController extends Controller
                     return redirect()->back();
                 }
             }
-    
+
             foreach ($request->permission as $value){
                 Permission::create([
                     'permission_category_id'    => $request->permission_category_id,

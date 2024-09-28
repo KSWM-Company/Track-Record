@@ -85,8 +85,8 @@ class LoginController extends Controller
     public function login(Request $request) {
         try {
             if (Auth::attempt(['cs_id' => $request->cs_id, 'password' => $request->password])) {
-                $branchId = Auth::user()->branch_default;
-                Session::put('branch_id', $branchId);
+                // $branchId = Auth::user()->branch_default;
+                // Session::put('branch_id', $branchId);
                 Toastr::success('Login successfully.', 'Success');
                 return redirect('admins/dashboard');
             } else {

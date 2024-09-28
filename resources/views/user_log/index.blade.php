@@ -60,40 +60,40 @@
             },
             columns: [
                 {
-                    data: 'id', 
+                    data: 'id',
                     name: 'id'
                 },
                 {
-                    data: 'log_name', 
+                    data: 'log_name',
                     name: 'log_name'
                 },
                 {
-                    data: 'description', 
+                    data: 'description',
                     name: 'description'
                 },
                 {
-                    data: 'subject_type', 
+                    data: 'subject_type',
                     name: 'subject_type'
                 },
                 {
-                    data: 'event', 
+                    data: 'event',
                     name: 'event'
                 },
                 {
-                    data: 'subject_id', 
+                    data: 'subject_id',
                     name: 'subject_id'
                 },
                 {
-                    data: 'properties', 
+                    data: 'properties',
                     name: 'properties'
                 },
                 {
-                    data: 'created_at', 
-                    name: 'created_at' , 
+                    data: 'created_at',
+                    name: 'created_at' ,
                     searching : false
                 },
                 {
-                    data: 'updated_at', 
+                    data: 'updated_at',
                     name: 'updated_at'
                 }
             ],

@@ -65,8 +65,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // DB::beginTransaction();
+        DB::beginTransaction();
         // try{
+            // dd($request);
             if($request->hasFile('profile')) {
                 $image = $request->file('profile');
                 $filename = $image->getClientOriginalName();
@@ -75,7 +76,6 @@ class UserController extends Controller
             }else{
                 $full_path = "";
             }
-
             $user = User::create([
                 'cs_id'  => $this->GenerateUserID(),
                 'role_id'  => $request->role_id,
@@ -186,12 +186,12 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        // try{
-        //     $user->delete();
-        //     return response()->json(['mg'=>'success'], 200);
-        // }catch(\Exception $e){
-        //     return response()->json(['error'=>$e->getMessage()]);
-        // }
+        try{
+            $user->delete();
+            return response()->json(['mg'=>'success'], 200);
+        }catch(\Exception $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
     }
     // public function profile(Request $request){
     //     $data = User::with('branches')
@@ -219,4 +219,10 @@ class UserController extends Controller
     //         return redirect()->back();
     //     }
     // }
+    public function yourFunction() {
+        $data = User::all(); // Retrieve your data
+        $highlightedId = 1; // Set this to whatever ID you want to highlight
+
+        return view('users.index_name', compact('data', 'highlightedId'));
+    }
 }

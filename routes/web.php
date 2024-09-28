@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuditController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionCategoryController;
@@ -20,7 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['prefix' => 'admins', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', [HomeController::class, 'index']);
-  
+    Route::resource('company-info', CompanyController::class);
+
     Route::resource('users', UserController::class);
     Route::get('profile/{id}', [UserController::class,'profile']);
     Route::post('users/onchange', [UserController::class,'onchangeRole']);

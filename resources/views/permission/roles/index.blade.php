@@ -17,9 +17,9 @@
                         <div class="table-responsive">
                             <!-- datatable start -->
                             <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
-                                <thead class="bg-success-600">
+                                <thead class="">
                                     <tr>
-                                        <th>#</th>
+                                        <th>ID</th>
                                         <th>Role Name</th>
                                         <th>Role Type</th>
                                         <th>Guard Name</th>
@@ -39,8 +39,8 @@
                                                         <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger btn-icon btn-inline-block mr-1" onclick="deleteData({{$role->id}})" title="Delete Record"><i class="fal fa-times"></i></a>
                                                     @endcan
                                                     @can('Role Edit')
-                                                        <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-sm btn-outline-primary btn-icon btn-inline-block mr-1" title="Edit"><i class="fal fa-edit"></i></a>                                                         
-                                                    @endcan                         
+                                                        <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-sm btn-outline-primary btn-icon btn-inline-block mr-1" title="Edit"><i class="fal fa-edit"></i></a>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

@@ -1,4 +1,4 @@
-<nav id="js-primary-nav" class="primary-nav" role="navigation">
+<nav id="js-primary-nav" class="primary-nav mod-bg-1 mod-nav-link nav-function-fixed header-function-fixed pace-running desktop" role="navigation">
     <div class="nav-filter">
         <div class="position-relative">
             <input type="text" id="nav_filter_input" placeholder="Filter menu" class="form-control" tabindex="0">
@@ -30,6 +30,7 @@
 
         @if(Auth::user()->can('Role View') || Auth::user()->can('Permission View') || Auth::user()->can('Permission Category View'))
             {{-- Role --}}
+            <li class="nav-title">Management User &amp; Role</li>
             <li class="@if (in_array(Request::instance()->segment(2), ['user-log', 'permission','permission_category','roles'])) active @endif">
                 <a href="javascript:;" title="Users" data-filter-tags="users" aria-expanded="false">
                     <span class="mr-2">
